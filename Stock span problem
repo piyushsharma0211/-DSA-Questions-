@@ -1,0 +1,35 @@
+Problem Link: https://www.geeksforgeeks.org/problems/stock-span-problem-1587115621/1?utm_source=geeksforgeeks&utm_medium=ml_article_practice_tab&utm_campaign=article_practice_tab
+
+//java
+ public ArrayList<Integer> calculateSpan(int[] arr) {
+        // Optimal O(N) Solution (Using Stack)
+        ArrayList<Integer> res=new ArrayList<>();
+        Stack<Integer> s=new Stack<>();
+        
+        for(int i=0; i<arr.length; i++){
+            while(s.size()!=0 && arr[s.peek()]<=arr[i]){
+                s.pop();
+            }
+            int span =s.isEmpty()?(i+1):(i-s.peek());
+            res.add(span);
+            s.push(i);
+        }
+        return res;
+        
+        //Brute Force Code (O(N²))
+        // ArrayList<Integer> res=new ArrayList<>();
+        // for(int i=0; i<arr.length; i++){
+        //     int cnt =1;
+        //     for(int j=i-1; j>=0; j--){
+        //         // if(arr[j]<=arr[i]){
+        //         //     cnt++;
+        //         // }
+        //         if (arr[j] > arr[i]) {
+        //             break; // Stop when a greater element is found
+        //         }
+        //         cnt++;
+        //     }
+        //     res.add(cnt);
+        // }
+        // return res;
+    }
